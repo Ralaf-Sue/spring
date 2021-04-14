@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+    <!--<aop:aspectj-autoproxy proxy-target-class="true"></aop:aspectj-autoproxy>-->
+    <bean id="test-simple" class="cn.su.spel.domain.Inventor">
+        <property name="name" value="张山"/>
+        <property name="nationality" value="#{T(String).format('%s%s','北京','北京')}"/>
+    </bean>
+
+    <bean id="testSimple" class="cn.su.spel.domain.Inventor">
+        <property name="name" value="张张"/>
+        <property name="nationality" value="#{T(String).format('%s%s','北京','北京')}"/>
+    </bean>
+
+    <bean id="test-system" class="cn.su.spel.domain.NumberGuess">
+        <property name="randomNumber" value="#{T(java.lang.Math).random()*100.0}"/>
+        <property name="userRegion" value="#{systemProperties['java.home']}"/>
+        <property name="environment" value="#{systemEnvironment['file.separator']}"/>
+    </bean>S
+
+    <bean id="my-message" class="cn.su.spel.domain.MyMessage">
+        <property name="payload" value="#{testimple.name}"></property>
+    </bean>
+
+</beans>
